@@ -40,8 +40,11 @@ def main():
             break
     video_links = []
     set_num = get_set(main_list_url)
-    main_list_page = request('GET', main_list_url).content
-    soup = BeautifulSoup(main_list_page, 'html.parser')
+    main_list_page = request('GET', main_list_url)
+    if main_list_page.status_code == 404:
+        print('Can not find any episodes.')
+        exit(1)
+    soup = BeautifulSoup(main_list_page.content, 'html.parser')
     for name in get_file_names(soup):
         video_link = generate_video_link(name, set_num, resolution)
         video_links.append(f'{video_link}\n')
