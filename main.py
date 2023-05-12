@@ -59,7 +59,7 @@ def get_set(url: str) -> str:
 
 
 def check_url(url: str)-> bool:
-    base_url_pat = compile(r"https:\/\/alaatv.com\/set\/[0-9][0-9][0-9][0-9]")
+    base_url_pat = compile(r"https:\/\/alaatv.com\/set\/(0|[1-9]\d*)")
     if base_url_pat.fullmatch(url) is None:
         return False
     return True
