@@ -20,21 +20,21 @@ def sigint_handler(sig, frame):
 
 def main():
     signal(SIGINT, sigint_handler)
-    main_list_url = input('Please enter main list link: ')
+    main_list_url = input('Please enter main list link: ').strip()
     if not check_url(main_list_url):
         print('Link is not in valid format.')
         main()
 
     resolution_pat = compile(r"720|480|240")
     while True:
-        resolution_input = input('Enter video quality (720,480,240): ')
+        resolution_input = input('Enter video quality (720,480,240): ').strip()
         if not resolution_pat.fullmatch(resolution_input):
             print('Quality is not valid.')
             continue
         break
     resolution = Resolution[f'p{resolution_input}']
     while True:
-        result_file_name = input('Please enter result file name: ')
+        result_file_name = input('Please enter result file name: ').strip()
         if result_file_name is not None:
             result_file_name += '.txt'
             break
